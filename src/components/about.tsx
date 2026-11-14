@@ -1,4 +1,4 @@
-import { principles } from "@/lib/content";
+import { principles, team } from "@/lib/content";
 import { cn } from "@/lib/cn";
 import { Reveal } from "./ui/reveal";
 import { SplitHeading } from "./ui/split-heading";
@@ -38,16 +38,26 @@ export function About() {
               <Reveal kind="type" delay={0.3}>
                 <span className="text-lime">~/techtilde $</span> <span className="text-paper">ls team/</span>
               </Reveal>
-              <Reveal kind="type" delay={0.5}>
-                {`[name].md${nbsp3}[name].md${nbsp3}[name].md`}
+              <Reveal kind="type" delay={0.45}>
+                {team.map((t) => `${t.file}.md`).join(nbsp3)}
               </Reveal>
-              <Reveal kind="type" delay={0.7}>
+              <Reveal kind="type" delay={0.6}>
                 <span className="text-lime">~/techtilde $</span>{" "}
-                <span className="text-paper">cat team/[name].md</span>
+                <span className="text-paper">cat team/*.md</span>
               </Reveal>
-              <Reveal kind="type" delay={0.9}>
-                [Name] — [role]. [One honest line about what they love building.]
-              </Reveal>
+              {team.map((t, i) => (
+                <Reveal key={t.file} kind="type" delay={0.75 + i * 0.15}>
+                  <a
+                    href={t.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-paper underline decoration-edge-3 underline-offset-4 transition-colors duration-200 hover:text-lime hover:decoration-lime"
+                  >
+                    {t.name}
+                  </a>{" "}
+                  — {t.role}. {t.line}
+                </Reveal>
+              ))}
             </Reveal>
           </div>
         </div>

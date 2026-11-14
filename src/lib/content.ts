@@ -78,18 +78,43 @@ export const projects: Project[] = [
   },
 ];
 
+/** People shown in the About terminal. Each line comes from what the person publishes about themselves. */
+export const team = [
+  {
+    file: "sami",
+    name: "Sami Farhat",
+    href: "https://sami-farhat.vercel.app/",
+    role: "Full-stack developer",
+    line: "Builds web and mobile apps end to end: React, React Native, ASP.NET Core and PostgreSQL.",
+  },
+  {
+    file: "ali",
+    name: "Ali Alhasan",
+    href: "https://www.linkedin.com/in/ali-alhasan-795a2b342/",
+    role: "Full-stack developer",
+    line: "Builds web and mobile apps with Laravel, React, React Native and PostgreSQL.",
+  },
+  {
+    file: "mohammad",
+    name: "Mohammad Steitieh",
+    href: "https://md-mx.netlify.app/",
+    role: "Security and AI engineer",
+    line: "Works on vulnerability research, secure code review and custom developer tools.",
+  },
+];
+
 export const principles = [
   {
     title: "Thoughtful Engineering",
-    description: "[One line on how you approach code quality and decisions.]",
+    description: "We think before we build: clear requirements, clean code, and decisions we can explain.",
   },
   {
     title: "Direct Collaboration",
-    description: "[One line on working directly with the developers, no middle layers.]",
+    description: "You work directly with the developers who build your product, with no account managers or middle layers.",
   },
   {
     title: "Built to Last",
-    description: "[One line on maintainability and long-term support.]",
+    description: "Maintainable code and ongoing support, so your product keeps working well after launch.",
   },
 ];
 

@@ -56,11 +56,8 @@ export function Footer() {
 
           <Reveal delay={0.18} className="flex flex-col gap-1">
             <p className={colTitle}>ELSEWHERE</p>
-            <a href="#top" className={footLink}>
-              GitHub ↗ <span className="font-mono text-[12px] text-faint">[link]</span>
-            </a>
-            <a href="#top" className={footLink}>
-              LinkedIn ↗ <span className="font-mono text-[12px] text-faint">[link]</span>
+            <a href="https://github.com/TechTilde" target="_blank" rel="noopener noreferrer" className={footLink}>
+              GitHub ↗
             </a>
           </Reveal>
         </div>
