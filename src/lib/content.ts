@@ -90,7 +90,7 @@ export const team = [
   {
     file: "ali",
     name: "Ali Alhasan",
-    href: "https://www.linkedin.com/in/ali-alhasan-795a2b342/",
+    href: "https://ali-alhsn.vercel.app/",
     role: "Full-stack developer",
     line: "Builds web and mobile apps with Laravel, React, React Native and PostgreSQL.",
   },
