@@ -166,6 +166,9 @@ export function ContactForm() {
       >
         {status.text}
       </Reveal>
+      <Reveal as="p" delay={d(6)} className="text-[12px] leading-[1.6] text-dim">
+        Your details are delivered to us through Web3Forms and used only to reply to your enquiry.
+      </Reveal>
     </Reveal>
   );
 }

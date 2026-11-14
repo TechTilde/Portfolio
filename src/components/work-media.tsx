@@ -49,17 +49,17 @@ export function PortfolioMedia() {
 
 const phones = [
   {
-    src: "/projects/qr-menu-en.webp",
+    src: "/projects/qr-en.webp",
     alt: "QR menu in English with categories and offers",
     offset: "-mb-16",
   },
   {
-    src: "/projects/qr-menu-cart.webp",
+    src: "/projects/qr-cart.webp",
     alt: "Cart with quantities, total and an Order on WhatsApp button",
     offset: "-mb-8",
   },
   {
-    src: "/projects/qr-menu-ar.webp",
+    src: "/projects/qr-ar.webp",
     alt: "The same menu in Arabic, right-to-left",
     offset: "-mb-16",
   },
