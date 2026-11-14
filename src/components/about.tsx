@@ -26,26 +26,26 @@ export function About() {
           </div>
 
           <div className="flex flex-col gap-8 pt-[clamp(0px,4vw,64px)]">
-            <Reveal as="p" delay={0.3} className="text-[clamp(18px,1.5vw,20px)] leading-[1.65] text-light">
+            <Reveal as="p" delay={0.1} className="text-[clamp(18px,1.5vw,20px)] leading-[1.65] text-light">
               TechTilde started with a shared passion for technology and building things that matter.
               We&apos;re a team of developers who believe great software comes from thoughtful engineering,
               clear communication, and genuine collaboration.
             </Reveal>
             <Reveal
-              delay={0.45}
+              delay={0.2}
               className="rounded-[10px] border border-edge-2 bg-panel px-[22px] py-5 font-mono text-[14px] leading-[1.9] text-soft"
             >
-              <Reveal kind="type" delay={0.9}>
+              <Reveal kind="type" delay={0.3}>
                 <span className="text-lime">~/techtilde $</span> <span className="text-paper">ls team/</span>
               </Reveal>
-              <Reveal kind="type" delay={1.4}>
+              <Reveal kind="type" delay={0.5}>
                 {`[name].md${nbsp3}[name].md${nbsp3}[name].md`}
               </Reveal>
-              <Reveal kind="type" delay={1.9}>
+              <Reveal kind="type" delay={0.7}>
                 <span className="text-lime">~/techtilde $</span>{" "}
                 <span className="text-paper">cat team/[name].md</span>
               </Reveal>
-              <Reveal kind="type" delay={2.4}>
+              <Reveal kind="type" delay={0.9}>
                 [Name] — [role]. [One honest line about what they love building.]
               </Reveal>
             </Reveal>
@@ -61,7 +61,7 @@ export function About() {
             <Reveal
               as="li"
               key={p.title}
-              delay={0.2 + i * 0.14}
+              delay={0.05 + i * 0.08}
               className={cn(
                 "flex flex-col gap-4 pt-10 pb-2",
                 i < principles.length - 1 ? "pr-8" : "pr-0",

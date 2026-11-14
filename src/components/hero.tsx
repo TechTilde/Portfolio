@@ -13,7 +13,7 @@ const points = [
   { cx: 60, cy: 168 },
   { cx: 452, cy: 98 },
 ];
-const popDelay = (cx: number) => 1.45 + ((cx - 60) / 392) * 1.6;
+const popDelay = (cx: number) => 0.75 + ((cx - 60) / 392) * 0.9;
 
 const labels = [
   { x: 170, y: 34, text: "PEAK 162, 80" },
@@ -36,7 +36,7 @@ export function Hero() {
         <div className="flex flex-col gap-8">
           <Reveal
             kind="type"
-            delay={0.1}
+            delay={0.05}
             className="flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[13px] tracking-[0.08em] text-soft"
           >
             <span className="text-lime">~/techtilde</span>
@@ -46,7 +46,7 @@ export function Hero() {
           <SplitHeading
             as="h1"
             id="hero-h"
-            delay={0.25}
+            delay={0.1}
             className="max-w-[13ch] font-heading text-[clamp(46px,8.2vw,124px)] leading-[0.96] font-bold tracking-[-0.045em] text-white"
           >
             Good Ideas Deserve Great <span className="text-lime">Engineering.</span>
@@ -57,7 +57,7 @@ export function Hero() {
           <div className="flex flex-col gap-9 pb-2">
             <Reveal
               as="p"
-              delay={0.9}
+              delay={0.4}
               className="max-w-[34rem] text-[clamp(18px,1.5vw,20px)] leading-[1.6] text-light"
             >
               We&apos;re TechTilde, a team of developers crafting thoughtful websites, powerful applications, and
@@ -67,7 +67,7 @@ export function Hero() {
               <Reveal
                 as="a"
                 href="#contact"
-                delay={1.05}
+                delay={0.5}
                 className={cn(ctaClass, "min-h-[54px] gap-2.5 px-[26px] text-[16px]")}
               >
                 Start a Project <Arrow />
@@ -75,7 +75,7 @@ export function Hero() {
               <Reveal
                 as="a"
                 href="#work"
-                delay={1.15}
+                delay={0.6}
                 className="inline-flex min-h-[54px] items-center rounded-lg border border-edge-3 px-[26px] text-[16px] font-medium text-[#E2E5E1] transition-colors duration-200 hover:border-lime hover:text-white"
               >
                 Explore Our Work
@@ -87,7 +87,7 @@ export function Hero() {
             as="figure"
             aria-hidden="true"
             data-parallax="fig"
-            delay={1.15}
+            delay={0.55}
             className="relative rounded-xl border border-edge-2 bg-panel px-[22px] pt-5 pb-6 max-tab:[&_text]:text-[20px]"
           >
             <div className="flex justify-between border-b border-edge pb-3.5 font-mono text-[11px] tracking-[0.08em] text-dim">
@@ -105,7 +105,7 @@ export function Hero() {
               </g>
               <path
                 className="tt-draw"
-                style={vars(1.4)}
+                style={vars(0.7)}
                 pathLength="1"
                 d={CURVE}
                 fill="none"
@@ -115,7 +115,7 @@ export function Hero() {
               />
               <g
                 className="tt-fade"
-                style={vars(2.9)}
+                style={vars(1.1)}
                 fill="none"
                 stroke="#5E655F"
                 strokeWidth="1"
@@ -140,7 +140,7 @@ export function Hero() {
                   <text
                     key={l.text}
                     className="tt-fade"
-                    style={vars(Number((3 + i * 0.12).toFixed(2)))}
+                    style={vars(Number((1.2 + i * 0.06).toFixed(2)))}
                     x={l.x}
                     y={l.y}
                   >
@@ -151,7 +151,7 @@ export function Hero() {
             </svg>
             <div className="mt-2.5 flex flex-wrap gap-x-6 gap-y-2 border-t border-edge pt-3.5 font-mono text-[12px] text-soft">
               {commands.map((c, i) => (
-                <Reveal as="span" kind="type" delay={3.2 + i * 0.45} key={c}>
+                <Reveal as="span" kind="type" delay={1.3 + i * 0.15} key={c}>
                   <span className="text-lime">$</span> {c}
                 </Reveal>
               ))}

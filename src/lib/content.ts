@@ -43,35 +43,37 @@ export const services = [
   },
 ];
 
-export const projects = [
+export type Project = {
+  kind: string;
+  media: "portfolio" | "qrMenu";
+  name: string;
+  description: string;
+  tags: string[];
+  /** Optional external link shown under the description. */
+  link?: { label: string; href: string };
+  reverse: boolean;
+};
+
+export const projects: Project[] = [
   {
-    kind: "WEBSITE",
-    mockup: "site",
-    name: "[Project Name One]",
+    kind: "WEBSITE & ADMIN PANEL",
+    media: "portfolio",
+    name: "Portfolio Websites",
     description:
-      "[Two lines on the client's problem and what was built. Replace with a real project.]",
-    tags: ["Next.js", "TypeScript", "Headless CMS"],
+      "Business portfolio websites that clients can update themselves: edit content, reorder sections and switch themes from a simple admin panel, with no developer needed.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "ASP.NET Core", "MySQL"],
     reverse: false,
   },
   {
-    kind: "WEB APPLICATION",
-    mockup: "dashboard",
-    name: "[Project Name Two]",
+    kind: "WEB APP",
+    media: "qrMenu",
+    name: "QR Menus for Cafés & Restaurants",
     description:
-      "[Two lines on the workflow this app replaced and who uses it. Replace with a real project.]",
-    tags: ["React", "Node.js", "PostgreSQL"],
+      "Guests scan a QR code at the table, browse the menu in English or Arabic, build a cart and send the order on WhatsApp. Staff update items, prices and availability themselves.",
+    tags: ["React", "Tailwind CSS", "Firebase", "JavaScript"],
     reverse: true,
   },
-  {
-    kind: "CUSTOM SOFTWARE",
-    mockup: "app",
-    name: "[Project Name Three]",
-    description:
-      "[Two lines on the product, the platforms it runs on and the problem it solves. Replace with a real project.]",
-    tags: ["React Native", "Python", "REST API"],
-    reverse: false,
-  },
-] as const;
+];
 
 export const principles = [
   {

@@ -11,7 +11,7 @@ export function Contact() {
       <div className={cn("tt-wrap", sectionPad)}>
         <div className="grid grid-cols-1 items-start gap-[clamp(40px,6vw,96px)] desk:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
           <div className="flex flex-col gap-8">
-            <SectionLabel n="05" dark kind="rv" delay={0.3}>
+            <SectionLabel n="05" dark kind="rv" delay={0.1}>
               CONTACT
             </SectionLabel>
             <SplitHeading
@@ -22,7 +22,7 @@ export function Contact() {
             </SplitHeading>
             <Reveal
               as="p"
-              delay={0.4}
+              delay={0.2}
               className="max-w-[30rem] text-[clamp(18px,1.5vw,20px)] leading-[1.6] text-light"
             >
               Have a project in mind? Tell us what you&apos;re building, and let&apos;s see how we can bring it to
@@ -31,7 +31,7 @@ export function Contact() {
             <Reveal
               as="a"
               href="mailto:hello@yourdomain.com"
-              delay={0.5}
+              delay={0.3}
               className={cn(ctaClass, "min-h-[54px] gap-2.5 self-start px-[26px] text-[16px]")}
             >
               Let&apos;s Talk <Arrow />

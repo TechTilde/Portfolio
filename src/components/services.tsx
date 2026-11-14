@@ -17,7 +17,7 @@ export function Services() {
               Built with intention.
             </SplitHeading>
           </div>
-          <Reveal as="p" delay={0.35} className="max-w-[30rem] pb-2 text-[19px] leading-[1.6] text-body">
+          <Reveal as="p" delay={0.15} className="max-w-[30rem] pb-2 text-[19px] leading-[1.6] text-body">
             We turn your ideas and business needs into carefully designed, reliable digital products.
           </Reveal>
         </div>
@@ -27,7 +27,7 @@ export function Services() {
             <Reveal
               as="li"
               key={s.title}
-              delay={i * 0.08}
+              delay={i * 0.05}
               className="tt-svc group relative grid grid-cols-[44px_minmax(0,1fr)] items-center gap-x-3 gap-y-2.5 border-t border-rule py-7 transition-colors duration-[250ms] hover:bg-[#EFEEE7] tab:grid-cols-[88px_minmax(0,1.1fr)_minmax(0,1.3fr)_56px] tab:gap-8 tab:py-10"
             >
               <span className="font-mono text-[14px] text-mute transition-colors duration-[250ms] group-hover:text-lime-deep">

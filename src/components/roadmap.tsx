@@ -63,7 +63,7 @@ export function Roadmap() {
   const doneTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   useEffect(() => {
     if (!seen) return;
-    doneTimer.current = setTimeout(() => setDone(true), 2900);
+    doneTimer.current = setTimeout(() => setDone(true), 1900);
     return () => clearTimeout(doneTimer.current);
   }, [seen]);
 

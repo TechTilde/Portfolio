@@ -45,7 +45,7 @@ export function Reveal<T extends ElementType = "div">(props: RevealProps<T>) {
   const [settled, setSettled] = useState(false);
   useEffect(() => {
     if (!seen || kind !== "rv") return;
-    const t = setTimeout(() => setSettled(true), (delay + 1.4) * 1000);
+    const t = setTimeout(() => setSettled(true), (delay + 0.8) * 1000);
     return () => clearTimeout(t);
   }, [seen, kind, delay]);
 

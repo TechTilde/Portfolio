@@ -4,26 +4,21 @@ import { Reveal } from "./ui/reveal";
 import { SplitHeading } from "./ui/split-heading";
 import { Arrow } from "./ui/arrow";
 import { SectionLabel, h2Light, sectionPad, twoCol } from "./ui/section-label";
-import { AppMockup, DashboardMockup, SiteMockup } from "./work-mockups";
+import { PortfolioMedia, QrMenuMedia } from "./work-media";
 
-const mockups = {
-  site: {
-    Component: SiteMockup,
-    frame: "bg-ink p-[clamp(20px,3vw,40px)] pb-0",
-  },
-  dashboard: {
-    Component: DashboardMockup,
+const media = {
+  portfolio: {
+    Component: PortfolioMedia,
     frame: "bg-rule p-[clamp(20px,3vw,40px)] pb-0",
   },
-  app: {
-    Component: AppMockup,
-    frame:
-      "flex min-h-[360px] items-end justify-center gap-[clamp(16px,3vw,36px)] bg-panel-3 p-[clamp(28px,4vw,56px)]",
+  qrMenu: {
+    Component: QrMenuMedia,
+    frame: "bg-panel-3 p-[clamp(28px,4vw,56px)] pb-0",
   },
 };
 
-/** Text blocks of a project animate in one after another, starting this long after the mockup. */
-const textDelay = (k: number) => 0.25 + k * 0.08;
+/** Text blocks of a project animate in one after another, starting shortly after the media. */
+const textDelay = (k: number) => 0.1 + k * 0.05;
 
 export function Work() {
   return (
@@ -38,24 +33,25 @@ export function Work() {
               for itself.
             </SplitHeading>
           </div>
-          <Reveal
-            as="p"
-            delay={0.35}
-            className="max-w-[26rem] pb-2 font-mono text-[13px] leading-[1.7] text-mute"
-          >
-            [PLACEHOLDER PROJECTS — replace each with a real project, its screenshots and links.]
+          <Reveal as="p" delay={0.15} className="max-w-[26rem] pb-2 text-[19px] leading-[1.6] text-body">
+            A selection of recent projects, built end to end.
           </Reveal>
         </div>
 
         {projects.map((p, i) => {
-          const { Component, frame } = mockups[p.mockup];
+          const { Component, frame } = media[p.media];
           return (
             <article
               key={p.name}
-              className="grid grid-cols-1 items-center gap-[clamp(32px,5vw,80px)] desk:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]"
+              className={cn(
+                "grid grid-cols-1 items-center gap-[clamp(32px,5vw,80px)]",
+                // The wide column always holds the media, including on the mirrored row.
+                p.reverse
+                  ? "desk:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)]"
+                  : "desk:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)]",
+              )}
             >
               <Reveal
-                aria-hidden="true"
                 data-parallax="frame"
                 className={cn("tt-proj-media overflow-hidden rounded-xl", frame, p.reverse && "desk:order-2")}
               >
@@ -64,7 +60,7 @@ export function Work() {
 
               <div className="flex flex-col gap-5">
                 <Reveal as="p" delay={textDelay(0)} className="font-mono text-[12px] tracking-[0.1em] text-mute">
-                  {String(i + 1).padStart(2, "0")} — {p.kind} · [PLACEHOLDER]
+                  {String(i + 1).padStart(2, "0")} — {p.kind}
                 </Reveal>
                 <Reveal
                   as="h3"
@@ -88,14 +84,18 @@ export function Work() {
                     </li>
                   ))}
                 </Reveal>
-                <Reveal
-                  as="a"
-                  href="#work"
-                  delay={textDelay(4)}
-                  className="group inline-flex min-h-11 items-center gap-2 self-start border-b border-ink text-[16px] font-medium text-ink transition-[gap,color] duration-200 hover:gap-3.5 hover:text-lime-deep"
-                >
-                  View Project <Arrow />
-                </Reveal>
+                {p.link && (
+                  <Reveal
+                    as="a"
+                    href={p.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    delay={textDelay(4)}
+                    className="group inline-flex min-h-11 items-center gap-2 self-start border-b border-ink text-[16px] font-medium text-ink transition-[gap,color] duration-200 hover:gap-3.5 hover:text-lime-deep"
+                  >
+                    {p.link.label} <Arrow />
+                  </Reveal>
+                )}
               </div>
             </article>
           );

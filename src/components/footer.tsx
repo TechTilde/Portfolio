@@ -23,7 +23,7 @@ export function Footer() {
         className="absolute -right-[35%] -bottom-[4%] w-[130%] max-w-[760px] opacity-[0.09] tab:-right-[6%] tab:-bottom-[12%] tab:w-[56%] tab:opacity-[0.06]"
       >
         <svg viewBox="18 36 64 28" className="block h-auto w-full">
-          <path className="tt-draw" style={{ "--d": "0.2s" } as CSSProperties} pathLength="1" d={TILDE_PATH} fill="none" stroke="#85CC10" strokeWidth="5" strokeLinecap="round" />
+          <path className="tt-draw" style={{ "--d": "0.1s" } as CSSProperties} pathLength="1" d={TILDE_PATH} fill="none" stroke="#85CC10" strokeWidth="5" strokeLinecap="round" />
         </svg>
       </Reveal>
 
@@ -38,7 +38,7 @@ export function Footer() {
             </p>
           </Reveal>
 
-          <Reveal as="nav" aria-label="Footer" delay={0.1} className="flex flex-col gap-1">
+          <Reveal as="nav" aria-label="Footer" delay={0.06} className="flex flex-col gap-1">
             <p className={colTitle}>NAVIGATE</p>
             {navigate.map((l) => (
               <a key={l.href} href={l.href} className={footLink}>
@@ -47,14 +47,14 @@ export function Footer() {
             ))}
           </Reveal>
 
-          <Reveal delay={0.2} className="flex flex-col gap-1">
+          <Reveal delay={0.12} className="flex flex-col gap-1">
             <p className={colTitle}>CONTACT</p>
             <a href="mailto:hello@yourdomain.com" className={footLink}>
               hello@[yourdomain].com
             </a>
           </Reveal>
 
-          <Reveal delay={0.3} className="flex flex-col gap-1">
+          <Reveal delay={0.18} className="flex flex-col gap-1">
             <p className={colTitle}>ELSEWHERE</p>
             <a href="#top" className={footLink}>
               GitHub ↗ <span className="font-mono text-[12px] text-faint">[link]</span>
@@ -66,7 +66,7 @@ export function Footer() {
         </div>
 
         <Reveal
-          delay={0.4}
+          delay={0.2}
           className="flex flex-wrap justify-between gap-4 border-t border-edge pt-7 font-mono text-[13px]"
         >
           <span>

@@ -27,7 +27,7 @@ export function useInView<T extends HTMLElement>({ watchParent = false } = {}) {
           io.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+      { threshold: 0, rootMargin: "0px 0px 8% 0px" },
     );
     io.observe(target);
     return () => io.disconnect();

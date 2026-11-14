@@ -48,7 +48,7 @@ type SplitHeadingProps = {
   children: ReactNode;
 };
 
-export function SplitHeading({ as: Tag = "h2", id, className, delay = 0.12, children }: SplitHeadingProps) {
+export function SplitHeading({ as: Tag = "h2", id, className, delay = 0.05, children }: SplitHeadingProps) {
   const { ref, seen } = useInView<HTMLHeadingElement>();
   const counter = { i: 0 };
 

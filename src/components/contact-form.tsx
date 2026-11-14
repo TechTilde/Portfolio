@@ -12,8 +12,8 @@ const row = "flex flex-col gap-2";
 
 type Status = { tone: "idle" | "ok" | "error"; text: string };
 
-/** Stagger for the form's children as they fade in (form itself starts at 0.2s). */
-const d = (i: number) => 0.45 + i * 0.07;
+/** Stagger for the form's children as they fade in (form itself starts at 0.1s). */
+const d = (i: number) => 0.2 + i * 0.04;
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ tone: "idle", text: "" });
@@ -38,7 +38,7 @@ export function ContactForm() {
       id="tt-form"
       noValidate
       aria-label="Project enquiry"
-      delay={0.2}
+      delay={0.1}
       onSubmit={onSubmit}
       className="flex flex-col gap-5 rounded-xl border border-edge-2 bg-panel p-[clamp(24px,3vw,40px)]"
     >
