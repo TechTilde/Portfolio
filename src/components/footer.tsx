@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { TILDE_PATH } from "@/lib/content";
+import { CONTACT_EMAIL, TILDE_PATH } from "@/lib/content";
 import { Reveal } from "./ui/reveal";
 import { LogoLockup } from "./ui/logo";
 
@@ -49,8 +49,8 @@ export function Footer() {
 
           <Reveal delay={0.12} className="flex flex-col gap-1">
             <p className={colTitle}>CONTACT</p>
-            <a href="mailto:hello@yourdomain.com" className={footLink}>
-              hello@[yourdomain].com
+            <a href={`mailto:${CONTACT_EMAIL}`} className={footLink}>
+              {CONTACT_EMAIL}
             </a>
           </Reveal>
 

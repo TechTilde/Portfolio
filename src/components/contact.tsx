@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { CONTACT_EMAIL } from "@/lib/content";
 import { Reveal } from "./ui/reveal";
 import { SplitHeading } from "./ui/split-heading";
 import { Arrow, ctaClass } from "./ui/arrow";
@@ -30,7 +31,7 @@ export function Contact() {
             </Reveal>
             <Reveal
               as="a"
-              href="mailto:hello@yourdomain.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               delay={0.3}
               className={cn(ctaClass, "min-h-[54px] gap-2.5 self-start px-[26px] text-[16px]")}
             >

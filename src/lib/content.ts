@@ -2,6 +2,9 @@
 export const TILDE_PATH =
   "M22 55 C27 46 32 41.5 38 41.5 C43.5 41.5 47 46 50 50 C53.5 54.5 57 58.5 62 58.5 C67.5 58.5 72 54 78 44.5";
 
+/** The public contact address (forwarded by Cloudflare Email Routing). */
+export const CONTACT_EMAIL = "contact@techtilde.com";
+
 export const navLinks = [
   { label: "Home", href: "#top" },
   { label: "Services", href: "#services" },
