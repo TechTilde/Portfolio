@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, IBM_Plex_Mono, Poppins, Space_Grotesk } from "next/font/google";
+import {
+  DM_Sans,
+  IBM_Plex_Mono,
+  Poppins,
+  Space_Grotesk,
+} from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,16 +31,30 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
+const title = "TechTilde — Software Studio";
+const description =
+  "TechTilde is a small team of developers building websites, web applications and custom software for businesses.";
 
 export const metadata: Metadata = {
-  title: "TechTilde — Software Studio",
-  description:
-    "TechTilde is a small team of developers building websites, web applications and custom software for businesses.",
+  metadataBase: new URL("https://www.techtilde.com"),
+  title: title,
+  description: description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "TechTilde",
+    title: title,
+    description: description,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: title,
+    description: description,
+  },
 };
 
-// Runs before first paint. Enables the scroll-reveal styles only when the visitor
-// allows motion and the browser supports IntersectionObserver; otherwise all
-// content stays visible and static.
 const motionFlag = `if(window.IntersectionObserver&&(!window.matchMedia||!matchMedia('(prefers-reduced-motion: reduce)').matches)){document.documentElement.classList.add('tt-js')}`;
 
 export default function RootLayout({
