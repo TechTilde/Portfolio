@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { projectTypes } from "@/lib/content";
+import { CONTACT_EMAIL, projectTypes } from "@/lib/content";
 import { cn } from "@/lib/cn";
 import { Reveal } from "./ui/reveal";
 
@@ -10,7 +10,15 @@ const field =
 const label = "font-mono text-[12px] tracking-[0.08em] text-soft";
 const row = "flex flex-col gap-2";
 
-type Status = { tone: "idle" | "ok" | "error"; text: string };
+// Submissions go to Web3Forms, which emails them to us. The access key is public by design
+// (it only lets people send *to* us), but we still keep it out of the repo: it comes from an
+// environment variable (NEXT_PUBLIC_ = readable by browser code; inlined at build time).
+const ENDPOINT = "https://api.web3forms.com/submit";
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+type Status = { tone: "idle" | "sending" | "ok" | "error"; text: string };
+
+const FAILED = `Something went wrong. Please email us at ${CONTACT_EMAIL} instead.`;
 
 /** Stagger for the form's children as they fade in (form itself starts at 0.1s). */
 const d = (i: number) => 0.2 + i * 0.04;
@@ -18,18 +26,61 @@ const d = (i: number) => 0.2 + i * 0.04;
 export function ContactForm() {
   const [status, setStatus] = useState<Status>({ tone: "idle", text: "" });
   const [emailInvalid, setEmailInvalid] = useState(false);
+  const sending = status.tone === "sending";
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const email = String(new FormData(e.currentTarget).get("email") ?? "").trim();
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    setEmailInvalid(!ok);
-    // TODO: connect to a form service (e.g. Formspree) or a Server Action / your backend.
-    setStatus(
-      ok
-        ? { tone: "ok", text: "Thanks. This form is a placeholder until it is connected to your inbox." }
-        : { tone: "error", text: "Please enter a valid email address, like you@company.com." },
-    );
+    if (sending) return;
+
+    const form = e.currentTarget; // keep a reference: currentTarget is cleared after the first await
+    const data = new FormData(form);
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setEmailInvalid(!emailOk);
+    if (!emailOk) {
+      setStatus({ tone: "error", text: "Please enter a valid email address, like you@company.com." });
+      return;
+    }
+    if (!message) {
+      setStatus({ tone: "error", text: "Please tell us a little about your project." });
+      return;
+    }
+    if (!ACCESS_KEY) {
+      console.error("Contact form: NEXT_PUBLIC_WEB3FORMS_KEY is not set.");
+      setStatus({ tone: "error", text: FAILED });
+      return;
+    }
+
+    setStatus({ tone: "sending", text: "Sending…" });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15_000);
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        // All fields, including the hidden "botcheck" trap, so Web3Forms can discard bot submissions.
+        body: JSON.stringify({
+          ...Object.fromEntries(data),
+          access_key: ACCESS_KEY,
+          subject: "New enquiry from techtilde.com",
+          from_name: "TechTilde website",
+        }),
+        signal: controller.signal,
+      });
+      const result: { success?: boolean } = await res.json();
+      if (res.ok && result.success) {
+        form.reset();
+        setStatus({ tone: "ok", text: "Thanks! Your message is on its way. We'll reply by email soon." });
+      } else {
+        setStatus({ tone: "error", text: FAILED });
+      }
+    } catch {
+      setStatus({ tone: "error", text: FAILED });
+    } finally {
+      clearTimeout(timeout);
+    }
   }
 
   return (
@@ -42,6 +93,8 @@ export function ContactForm() {
       onSubmit={onSubmit}
       className="flex flex-col gap-5 rounded-xl border border-edge-2 bg-panel p-[clamp(24px,3vw,40px)]"
     >
+      {/* Spam trap: invisible to people, bots tend to tick it. Web3Forms drops those submissions. */}
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <Reveal delay={d(0)} className={row}>
         <label htmlFor="tt-name" className={label}>
           NAME
@@ -71,7 +124,7 @@ export function ContactForm() {
         <label htmlFor="tt-type" className={label}>
           PROJECT TYPE
         </label>
-        <select id="tt-type" name="type" className={cn(field, "cursor-pointer appearance-none")}>
+        <select id="tt-type" name="project_type" className={cn(field, "cursor-pointer appearance-none")}>
           {projectTypes.map((t) => (
             <option key={t}>{t}</option>
           ))}
@@ -92,10 +145,12 @@ export function ContactForm() {
       <Reveal
         as="button"
         type="submit"
+        disabled={sending}
+        aria-busy={sending}
         delay={d(4)}
-        className="min-h-[54px] cursor-pointer rounded-lg border-0 bg-lime text-[16px] font-medium text-ink transition-colors duration-200 hover:bg-lime-hi"
+        className="min-h-[54px] cursor-pointer rounded-lg border-0 bg-lime text-[16px] font-medium text-ink transition-colors duration-200 hover:bg-lime-hi disabled:cursor-not-allowed disabled:opacity-70"
       >
-        Send Message
+        {sending ? "Sending…" : "Send Message"}
       </Reveal>
       <Reveal
         as="p"
@@ -106,7 +161,7 @@ export function ContactForm() {
           "min-h-[22px] text-[14px]",
           status.tone === "ok" && "text-ok",
           status.tone === "error" && "text-err",
-          status.tone === "idle" && "text-soft",
+          (status.tone === "idle" || status.tone === "sending") && "text-soft",
         )}
       >
         {status.text}
