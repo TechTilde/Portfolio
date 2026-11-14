@@ -8,9 +8,7 @@
    ========================================================= */
 
 @import "tailwindcss" source(none);
-@source "../app";
-@source "../components";
-@source "../lib";
+@source "../"; /* everything under src/ */
 
 /* ---------- Design tokens ---------- */
 @theme {
