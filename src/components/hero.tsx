@@ -60,8 +60,8 @@ export function Hero() {
               delay={0.4}
               className="max-w-[34rem] text-[clamp(18px,1.5vw,20px)] leading-[1.6] text-light"
             >
-              We&apos;re TechTilde, a team of developers crafting thoughtful websites, powerful applications, and
-              digital solutions that help businesses move forward.
+              We&apos;re TechTilde, a software studio of developers crafting thoughtful websites, powerful
+              applications, and digital solutions that help businesses move forward.
             </Reveal>
             <div className="flex flex-wrap gap-3">
               <Reveal
